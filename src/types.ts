@@ -6,8 +6,12 @@ export type RoleId = 'P' | 'O' | 'C1' | 'C2' | 'S1' | 'S2' | 'L'
  *  p1..p6 seguono la numerazione delle zone del campo. */
 export type SlotId = 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6'
 
-/** Rotazione, identificata dalla zona in cui si trova il palleggiatore. */
-export type RotationId = 'P1' | 'P4'
+/** Rotazione, identificata dalla zona in cui si trova il palleggiatore.
+ *  L'ordine è quello in cui si ruota in partita: 1, 6, 5, 4, 3, 2. */
+export type RotationId = 'P1' | 'P6' | 'P5' | 'P4' | 'P3' | 'P2'
+
+/** Le sei zone del campo, nella numerazione della pallavolo. */
+export type ZoneId = 1 | 2 | 3 | 4 | 5 | 6
 
 export type SituationId =
   | 'ricezione'
@@ -34,6 +38,10 @@ export type Phase = {
   ball?: Point
   /** Zona avversaria da evidenziare. */
   oppZone?: OppZoneId
+  /** Ruoli diversi da quelli della rotazione, per i casi in cui la
+   *  formazione in campo cambia: in battuta il libero esce e rientra il
+   *  centrale, che è l'unico dei due a poter servire. */
+  roles?: Partial<Record<SlotId, RoleId>>
 }
 
 export type Rotation = {
@@ -44,6 +52,14 @@ export type Rotation = {
   label: string
   /** Chi occupa ciascun posto di sistema in questa rotazione. */
   roleBySlot: Record<SlotId, RoleId>
+  /** In quale zona si trova ciascun giocatore prima del servizio, cioè
+   *  finché valgono i vincoli di rotazione. */
+  zoneBySlot: Record<SlotId, ZoneId>
+  /** Quale dei due centrali è sostituito dal libero in questa rotazione:
+   *  sempre quello che si trova in seconda linea. */
+  liberoFor: RoleId
+  /** Chi va a servire: il giocatore che si trova in zona 1. */
+  serverSlot: SlotId
 }
 
 export type Scheme = {

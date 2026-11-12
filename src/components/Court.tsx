@@ -113,7 +113,7 @@ export function Court({ phases, position, rotation }: Props) {
         const b = next.spots[slot]
         const at = lerpPoint(a, b, t)
         const moving = distance(a, b) >= STILL
-        const role = rotation.roleBySlot[slot]
+        const role = current.roles?.[slot] ?? rotation.roleBySlot[slot]
         return (
           <Dot key={slot} at={at} label={role} family={ROLE[role].family} active={moving} />
         )

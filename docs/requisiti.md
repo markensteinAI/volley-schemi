@@ -25,7 +25,7 @@ ripetute ogni allenamento.
 | Architettura | Sito statico: nessun server, nessun database, nessun costo |
 | Sistema di gioco | 5-1 |
 | Identificazione giocatori | Sigla del ruolo: P, O, C1, C2, S1, S2, L |
-| Rotazioni | Struttura pronta per tutte e sei, partiamo definendone due |
+| Rotazioni | Tutte e sei, da P in 1 a P in 2 |
 | Animazione | A fasi, con play, pausa e scorrimento manuale |
 | Dispositivo | Telefono come riferimento, desktop con informazioni aggiuntive |
 | Pubblicazione | Repository pubblico su GitHub, sito su GitHub Pages |
@@ -119,15 +119,22 @@ Cose deliberatamente escluse, da non implementare senza una decisione esplicita:
 ## 11. Scelte confermate il 12 novembre 2026
 
 - Nome del progetto e del repository: `volley-schemi`.
-- Le due rotazioni di partenza sono P1 (palleggiatore in zona 1, seconda linea)
-  e P4 (palleggiatore in zona 4, prima linea): coprono i due casi che cambiano
-  di più i movimenti.
-- Il libero è sempre in campo, al posto del centrale di seconda linea.
+- Le rotazioni coperte sono tutte e sei, nell'ordine di rotazione reale:
+  P1, P6, P5, P4, P3, P2.
+- Il libero è in campo al posto del centrale di seconda linea e gioca a posto 5.
+- Eccezione gestita: nelle rotazioni P6 e P3 il centrale sostituito dal libero
+  si trova in zona 1 e deve quindi servire. Poiché il libero non può battere,
+  in quelle battute il libero esce e rientra il centrale. L'applicazione lo
+  mostra e lo spiega nella didascalia.
 
 ## 12. Come aggiungere schemi
 
-- Una **rotazione** nuova: una voce in `src/data/rotations.ts`, dove si dice
-  quale ruolo occupa ciascun posto di sistema.
+- Una **rotazione** nuova non serve: ci sono tutte. In `src/data/rotations.ts`
+  si trovano le sei formazioni, ciascuna con la zona di partenza di ogni
+  giocatore e il posto in cui gioca dopo gli scambi.
+- Le **posizioni** stanno in `src/data/positions.ts`: `RECEIVE` per la
+  disposizione di ricezione di ogni rotazione, le altre costanti per le
+  posizioni comuni a tutte.
 - Uno **schema** nuovo o una variante: una voce nel file della situazione
   corrispondente in `src/data/` (`ricezione.ts`, `difesa.ts`, `freeball.ts`,
   `copertura.ts`, `battuta.ts`).

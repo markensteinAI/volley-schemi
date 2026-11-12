@@ -66,7 +66,7 @@ export function SidePanel({ scheme, phases, rotation, position, onSeek }: Props)
         <h3>Chi è in campo</h3>
         <ul className="legend">
           {ORDER.map((slot) => {
-            const role = rotation.roleBySlot[slot]
+            const role = phases[index].roles?.[slot] ?? rotation.roleBySlot[slot]
             return (
               <li key={slot}>
                 <span className={`legend-dot dot-${ROLE[role].family}`}>{role}</span>

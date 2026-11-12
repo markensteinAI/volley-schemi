@@ -21,8 +21,10 @@ scorrere il movimento avanti e indietro:
 | Copertura | attacco da posto 4, attacco da posto 2 |
 | Battuta | servizio e rientro ai posti di difesa |
 
-Ogni situazione si può vedere nelle rotazioni definite: oggi **P in 1**
-(palleggiatore in seconda linea) e **P in 4** (palleggiatore in prima linea).
+Ogni situazione si può vedere in **tutte e sei le rotazioni**, da P in 1 a
+P in 2, nell'ordine in cui si ruota in partita. Quello che cambia da una
+rotazione all'altra è soprattutto quanta strada deve fare il palleggiatore per
+arrivare in zona 2, e quali vincoli lo trattengono fino al tocco.
 
 Da computer compare a fianco del campo un pannello con la descrizione tattica,
 l'elenco delle fasi e le note; dal telefono resta solo l'essenziale.
@@ -46,12 +48,15 @@ npm run build
 
 Gli schemi sono dati, non codice: si modificano senza toccare l'applicazione.
 
-- **Nuova rotazione**: aggiungi una voce in `src/data/rotations.ts`, indicando
-  quale ruolo occupa ciascun posto di sistema. Le rotazioni mancanti sono P6,
-  P5, P3 e P2.
+- **Correggere un movimento**: le posizioni stanno in `src/data/positions.ts`.
+  `RECEIVE` contiene la disposizione di ricezione rotazione per rotazione, le
+  altre costanti valgono per tutte (posizioni di sistema, di attacco, di stacco).
 - **Nuovo schema o variante**: aggiungi una voce nel file della situazione in
   `src/data/` (`ricezione.ts`, `difesa.ts`, `freeball.ts`, `copertura.ts`,
   `battuta.ts`).
+- **Cambiare una formazione**: `src/data/rotations.ts` descrive ogni rotazione
+  con due mappe — dove sta ciascuno prima del servizio e in quale posto gioca
+  dopo — più quale centrale è sostituito dal libero e chi va a servire.
 
 Le posizioni sono espresse in metri sul campo reale: `x` da 0 (sinistra) a 9
 (destra), `y` da 0 (rete) a 9 (linea di fondo). La zona di servizio arriva a
