@@ -6,6 +6,8 @@ registrarsi e senza installare nulla.
 
 Sistema di gioco **5-1**. Interfaccia in italiano.
 
+**Link per la squadra: https://markensteinai.github.io/volley-schemi/**
+
 ## Cosa contiene
 
 Cinque situazioni, ciascuna animata fase per fase, con play, pausa e barra per
