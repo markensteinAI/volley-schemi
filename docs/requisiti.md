@@ -37,7 +37,10 @@ ripetute ogni allenamento.
 - Una striscia del campo avversario, dove si accende la zona da cui arriva
   l'attacco o la free ball. Gli avversari non sono rappresentati uno per uno:
   conta da dove arriva la palla, non come sono disposti loro.
-- Sette dischetti con la sigla del ruolo. Il libero è visivamente distinto.
+- Sei dischetti con la sigla del ruolo. In campo si gioca sempre in sei:
+  il libero sostituisce il centrale che si trova in seconda linea, quindi i
+  ruoli definiti sono sette ma quelli presenti sono sei. Il libero ha un
+  colore distinto.
 - Una scia tratteggiata che indica il percorso di chi si sta spostando.
 - Una didascalia che spiega la fase corrente in una frase.
 
@@ -113,11 +116,21 @@ Cose deliberatamente escluse, da non implementare senza una decisione esplicita:
 - Video, sovrapposizione su filmati di partite.
 - Esportazione in PDF o come immagine da condividere.
 
-## 11. Assunzioni da confermare
+## 11. Scelte confermate il 12 novembre 2026
 
 - Nome del progetto e del repository: `volley-schemi`.
-- Le due rotazioni di partenza: palleggiatore in zona 1 (seconda linea) e
-  palleggiatore in zona 4 (prima linea), perché coprono i due casi che cambiano
+- Le due rotazioni di partenza sono P1 (palleggiatore in zona 1, seconda linea)
+  e P4 (palleggiatore in zona 4, prima linea): coprono i due casi che cambiano
   di più i movimenti.
-- Il libero è sempre presente in campo negli schemi di ricezione e difesa, e
-  assente negli schemi di battuta della prima linea.
+- Il libero è sempre in campo, al posto del centrale di seconda linea.
+
+## 12. Come aggiungere schemi
+
+- Una **rotazione** nuova: una voce in `src/data/rotations.ts`, dove si dice
+  quale ruolo occupa ciascun posto di sistema.
+- Uno **schema** nuovo o una variante: una voce nel file della situazione
+  corrispondente in `src/data/` (`ricezione.ts`, `difesa.ts`, `freeball.ts`,
+  `copertura.ts`, `battuta.ts`).
+- Le posizioni sono in metri: x da 0 (sinistra) a 9 (destra), y da 0 (rete) a
+  9 (linea di fondo). La zona di servizio arriva a y 11,2; il campo avversario
+  sta sopra la rete, con y negative.
